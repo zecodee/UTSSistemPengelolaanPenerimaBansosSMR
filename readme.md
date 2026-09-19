@@ -3,7 +3,9 @@
 ## Project Pemrograman Berorientasi Objek
 
 **Nama:** Zefri Al Rizqullah  
+
 **NIM:** 2509116084
+
 **Program Studi:** Sistem Informasi Kelas C`2025  
 
 ---
@@ -38,7 +40,6 @@ Selain mengelola penerima, program juga dapat mengelola data bantuan dan pengaju
 Project dibagi menjadi dua package utama, yaitu `app` dan `model`.
 
 > **Gambar 1. Struktur Project**
-
 ![Gambar 1 - Struktur Project](images/struktur-project.png)
 
 Package `app` berisi `Main.java` yang digunakan untuk menjalankan program dan mengatur seluruh menu.
@@ -50,23 +51,8 @@ Package `model` berisi class yang digunakan untuk membentuk object dan menyimpan
 ## 3. Penjelasan Hierarki Class & Penerapan Inheritance
 Hierarki class pada **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** menggambarkan hubungan antara class `Main`, `Penerima`, `PenerimaIndividu`, `PenerimaKeluarga`, `Bantuan`, dan `Pengajuan`.
 
-```text
-                         Main
-                          │
-                          │ Mengelola
-                          ▼
-        ┌─────────────────┼─────────────────┐
-        │                 │                 │
-        ▼                 ▼                 ▼
-    Penerima           Bantuan          Pengajuan
-        ▲                                   │
-        │ Inheritance                       │ Menghubungkan
-        │                                   │
-   ┌────┴─────┐                      ┌──────┴──────┐
-   │          │                      │             │
-   ▼          ▼                      ▼             ▼
-Individu   Keluarga               Penerima      Bantuan
-```
+> **Gambar 2. Hierarki Class**
+![Gambar 2 - Hierarki Class](images/struktur-project.png)
 
 Berdasarkan hierarki di atas, `Main` merupakan class utama yang mengatur jalannya program. Melalui class ini, program mengelola tiga data utama, yaitu **Penerima**, **Bantuan**, dan **Pengajuan**. Data tersebut disimpan menggunakan `ArrayList` dan kemudian dikelola melalui menu-menu yang tersedia pada program.
 
@@ -120,7 +106,6 @@ Sehingga ID yang dihasilkan berbentuk:
 P001
 P002
 P003
-...
 ```
 
 ---
@@ -182,7 +167,6 @@ ID bantuan dibuat secara otomatis dengan format:
 B001
 B002
 B003
-...
 ```
 
 Class ini juga memiliki method:
@@ -218,7 +202,6 @@ Ketika pengajuan dibuat, ID dibuat otomatis dengan format:
 PG001
 PG002
 PG003
-...
 ```
 
 Sedangkan status awal pengajuan adalah:
@@ -247,8 +230,8 @@ Program **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** dijalankan melalu
 ### 5.1 Menjalankan Program dan Menu Utama
 Saat program pertama kali dijalankan, sistem akan menampilkan menu utama. Menu ini menjadi pusat untuk mengakses seluruh fitur yang tersedia, yaitu mengelola data penerima, mengelola data bantuan, mengelola data pengajuan, dan memproses pengajuan bantuan.
 
-> **Gambar 2. Tampilan Menu Utama**
-![Gambar 2 - Tampilan Menu Utama](images/struktur-project.png)
+> **Gambar 3. Tampilan Menu Utama**
+![Gambar 3 - Tampilan Menu Utama](images/struktur-project.png)
 
 ---
 
@@ -257,18 +240,18 @@ Sebelum membuat pengajuan bantuan, pengguna terlebih dahulu menambahkan data pen
 
 Pada penerima individu, pengguna mengisi data seperti NIK, nama, alamat, penghasilan, pekerjaan, dan status rumah. Setelah data berhasil ditambahkan, sistem akan memberikan ID penerima secara otomatis.
 
-> **Gambar 3. Penambahan Data Penerima Individu**
-![Gambar 3 - Penambahan Data Penerima Individu](images/penerima-individu.png)
+> **Gambar 4. Penambahan Data Penerima Individu**
+![Gambar 4 - Penambahan Data Penerima Individu](images/penerima-individu.png)
 
 Untuk penerima keluarga, pengguna mengisi data umum penerima kemudian dilengkapi dengan jumlah anggota keluarga dan jumlah tanggungan. Sistem juga memberikan ID penerima secara otomatis.
 
-> **Gambar 4. Penambahan Data Penerima Keluarga**
-![Gambar 4 - Penambahan Data Penerima Keluarga](images/penerima-keluarga.png)
+> **Gambar 5. Penambahan Data Penerima Keluarga**
+![Gambar 5 - Penambahan Data Penerima Keluarga](images/penerima-keluarga.png)
 
 Setelah beberapa penerima ditambahkan, pengguna dapat menampilkan seluruh data penerima untuk melihat data yang telah tersimpan.
 
-> **Gambar 5. Tampilan Data Penerima**
-![Gambar 5 - Tampilan Data Penerima](images/tampil-penerima.png)
+> **Gambar 6. Tampilan Data Penerima**
+![Gambar 6 - Tampilan Data Penerima](images/tampil-penerima.png)
 
 ---
 
@@ -277,8 +260,8 @@ Data penerima yang sudah tersimpan dapat diperbarui apabila terdapat perubahan a
 
 Fitur ini berfungsi sebagai proses **Update** pada pengelolaan data penerima.
 
-> **Gambar 6. Proses Mengubah Data Penerima**
-![Gambar 6 - Proses Mengubah Data Penerima](images/ubah-penerima.png)
+> **Gambar 7. Proses Mengubah Data Penerima**
+![Gambar 7 - Proses Mengubah Data Penerima](images/ubah-penerima.png)
 
 ---
 
@@ -287,13 +270,13 @@ Setelah data penerima tersedia, pengguna dapat menambahkan jenis bantuan sosial 
 
 Setiap bantuan yang berhasil ditambahkan akan mendapatkan ID bantuan secara otomatis. Kuota yang dimasukkan nantinya digunakan untuk menentukan jumlah penerima yang dapat menerima bantuan tersebut.
 
-> **Gambar 7. Penambahan Data Bantuan**
-![Gambar 7 - Penambahan Data Bantuan](images/tambah_bantuan.png)
+> **Gambar 8. Penambahan Data Bantuan**
+![Gambar 8 - Penambahan Data Bantuan](images/tambah_bantuan.png)
 
 Pengguna juga dapat menampilkan daftar bantuan untuk mengetahui bantuan yang tersedia, nominal bantuan, serta sisa kuotanya.
 
-> **Gambar 8. Tampilan Data Bantuan**
-![Gambar 8 - Tampilan Data Bantuan](images/tampil-bantuan.png)
+> **Gambar 9. Tampilan Data Bantuan**
+![Gambar 9 - Tampilan Data Bantuan](images/tampil-bantuan.png)
 
 ---
 
@@ -303,13 +286,13 @@ Setelah data penerima dan bantuan tersedia, penerima dapat membuat pengajuan ban
 
 Jika data yang dipilih tersedia dan pengajuan berhasil dibuat, sistem akan memberikan ID pengajuan secara otomatis dengan status awal **Menunggu**. Status tersebut menunjukkan bahwa pengajuan sudah tercatat tetapi belum diproses.
 
-> **Gambar 9. Proses Pembuatan Pengajuan Bantuan**
-![Gambar 9 - Proses Pembuatan Pengajuan Bantuan](images/buat-pengajuan.png)
+> **Gambar 10. Proses Pembuatan Pengajuan Bantuan**
+![Gambar 10 - Proses Pembuatan Pengajuan Bantuan](images/buat-pengajuan.png)
 
 Pengguna kemudian dapat melihat seluruh pengajuan yang telah dibuat melalui menu tampilkan pengajuan.
 
-> **Gambar 10. Tampilan Data Pengajuan**
-![Gambar 10 - Tampilan Data Pengajuan](images/tampil-pengajuan.png)
+> **Gambar 11. Tampilan Data Pengajuan**
+![Gambar 11 - Tampilan Data Pengajuan](images/tampil-pengajuan.png)
 
 ---
 
@@ -321,8 +304,8 @@ Untuk **Penerima Individu**, pengajuan dapat diterima apabila penghasilannya tid
 
 Apabila penerima memenuhi ketentuan dan kuota bantuan masih tersedia, status pengajuan akan berubah menjadi **Diterima**. Setelah pengajuan diterima, kuota bantuan secara otomatis berkurang satu.
 
-> **Gambar 11. Pengajuan Bantuan Diterima**
-![Gambar 11 - Pengajuan Bantuan Diterima](images/diterima.png)
+> **Gambar 12. Pengajuan Bantuan Diterima**
+![Gambar 12 - Pengajuan Bantuan Diterima](images/diterima.png)
 
 ---
 
@@ -334,8 +317,8 @@ Sebagai contoh, pengajuan penerima individu akan ditolak apabila penghasilannya 
 
 Ketika pengajuan ditolak, sistem akan mengubah status menjadi **Ditolak** dan menampilkan alasan penolakan.
 
-> **Gambar 12. Pengajuan Bantuan Ditolak**
-![Gambar 12 - Pengajuan Bantuan Ditolak](images/ditolak.png)
+> **Gambar 13. Pengajuan Bantuan Ditolak**
+![Gambar 13 - Pengajuan Bantuan Ditolak](images/ditolak.png)
 
 ---
 
@@ -345,8 +328,8 @@ Program juga melakukan pemeriksaan terhadap kuota bantuan. Jika kuota suatu bant
 
 Validasi ini digunakan agar jumlah penerima bantuan tidak melebihi kuota yang tersedia.
 
-> **Gambar 13. Validasi Kuota Bantuan Habis**
-![Gambar 13 - Validasi Kuota Bantuan Habis](images/kuota-habis.png)
+> **Gambar 14. Validasi Kuota Bantuan Habis**
+![Gambar 14 - Validasi Kuota Bantuan Habis](images/kuota-habis.png)
 
 ---
 
@@ -357,8 +340,8 @@ Sistem mencegah penerima membuat pengajuan yang sama apabila penerima tersebut m
 Fitur ini digunakan untuk menghindari adanya pengajuan ganda dari penerima terhadap bantuan yang sama.
 
 
-> **Gambar 13. Validasi Pengajuan Bantuan yang Sama**
-![Gambar 13 - Validasi Kuota Bantuan Habis](images/valid.png)
+> **Gambar 15. Validasi Pengajuan Bantuan yang Sama**
+![Gambar 15 - Validasi Kuota Bantuan Habis](images/valid.png)
 
 ---
 
@@ -368,8 +351,8 @@ Pengajuan yang masih berstatus **Menunggu** dapat dihapus apabila terjadi kesala
 
 Namun, pengajuan yang sudah diproses menjadi **Diterima** atau **Ditolak** tidak dapat dihapus karena pengajuan tersebut sudah memiliki hasil proses.
 
-> **Gambar 14. Proses Menghapus Pengajuan**
-![Gambar 14 - Proses Menghapus Pengajuan](images/pengajuan-hapus.png)
+> **Gambar 16. Proses Menghapus Pengajuan**
+![Gambar 16 - Proses Menghapus Pengajuan](images/pengajuan-hapus.png)
 
 ---
 
@@ -379,11 +362,11 @@ Program menyediakan fitur untuk menghapus data penerima maupun bantuan. Data dap
 
 Apabila penerima sudah mempunyai pengajuan, data penerima tidak dapat dihapus. Begitu juga dengan bantuan yang sudah digunakan dalam pengajuan. Pembatasan ini digunakan untuk menjaga agar data pengajuan tetap memiliki hubungan dengan data penerima dan bantuan yang benar.
 
-> **Gambar 15. Validasi Penghapusan Data Penerima**
-![Gambar 15 - Validasi Penghapusan Data Penerima](images/penerima-gakhapus.png)
+> **Gambar 17. Validasi Penghapusan Data Penerima**
+![Gambar 17 - Validasi Penghapusan Data Penerima](images/penerima-gakhapus.png)
 
-> **Gambar 16. Validasi Penghapusan Data Bantuan**
-![Gambar 16 - Validasi Penghapusan Data Bantuan](images/bantuan-hapus.png)
+> **Gambar 18. Validasi Penghapusan Data Bantuan**
+![Gambar 18 - Validasi Penghapusan Data Bantuan](images/bantuan-hapus.png)
 
 ---
 
@@ -397,36 +380,8 @@ Apabila memenuhi ketentuan, pengajuan akan **Diterima** dan kuota bantuan berkur
 
 Alur sederhananya dapat digambarkan sebagai berikut:
 
-```text
-Program Dimulai
-      │
-      ▼
-Tambah Data Penerima
-      │
-      ▼
-Tambah Data Bantuan
-      │
-      ▼
-Buat Pengajuan
-      │
-      ▼
-Status "Menunggu"
-      │
-      ▼
-Proses Pengajuan
-      │
-      ├───────────────┐
-      ▼               ▼
-   Diterima         Ditolak
-      │               │
-      ▼               ▼
-Kuota Berkurang   Alasan Ditampilkan
-      │               │
-      └───────┬───────┘
-              ▼
-       Data Pengajuan
-        Dapat Dilihat
-```
+> **Gambar 19. Alur Keseluruhan Program**
+![Gambar 19 - Alur Keseluruhan Program](images/alur-program.png)
 
 Dengan alur tersebut, program sudah menggambarkan proses sederhana pengelolaan bantuan sosial mulai dari **pendataan penerima, pendataan bantuan, pembuatan pengajuan, pemeriksaan pengajuan, sampai penentuan hasil pengajuan bantuan**.
 
