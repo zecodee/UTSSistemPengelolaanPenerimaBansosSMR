@@ -1,23 +1,22 @@
 # Sistem Pengelolaan Bantuan Sosial Daerah Samarinda
 
-## Mini Project Pemrograman Berorientasi Objek
+## Project Pemrograman Berorientasi Objek
 
-**Nama:** Nama Mahasiswa  
-**NIM:** 0000000000  
-**Program Studi:** Informatika  
+**Nama:** Zefri Al Rizqullah  
+**NIM:** 2509116084
+**Program Studi:** Sistem Informasi Kelas C`2025  
 
 ---
 
 ## 1. Deskripsi Studi Kasus
-
 **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** merupakan program berbasis Java yang digunakan untuk membantu proses pengelolaan data penerima bantuan sosial, data bantuan, serta pengajuan bantuan.
 
 Program dibuat dalam bentuk aplikasi berbasis **Command Line Interface (CLI)** dan dijalankan menggunakan NetBeans.
 
 Dalam program terdapat dua jenis penerima bantuan, yaitu:
 
-1. **Penerima Individu**
-2. **Penerima Keluarga**
+1. Penerima Individu
+2. Penerima Keluarga
 
 Kedua jenis penerima memiliki data umum yang sama seperti ID penerima, NIK, nama, alamat, dan penghasilan. Namun, masing-masing jenis penerima juga memiliki data khusus.
 
@@ -35,95 +34,51 @@ Selain mengelola penerima, program juga dapat mengelola data bantuan dan pengaju
 
 ---
 
-## 2. Tujuan Program
-
-Program ini dibuat untuk menerapkan konsep dasar **Pemrograman Berorientasi Objek (PBO)** melalui sebuah studi kasus pengelolaan bantuan sosial.
-
-Konsep yang diterapkan dalam program antara lain:
-
-- Class dan Object
-- Constructor
-- Inheritance
-- Encapsulation
-- ArrayList
-- Percabangan
-- Perulangan
-- CRUD
-- Validasi input
-- Relasi antar object
-
----
-
-## 3. Struktur Project
-
+## 2. Struktur Project
 Project dibagi menjadi dua package utama, yaitu `app` dan `model`.
 
-```text
-SistemBantuanSosial
-│
-└── Source Packages
-    │
-    ├── app
-    │   └── Main.java
-    │
-    └── model
-        ├── Bantuan.java
-        ├── Penerima.java
-        ├── PenerimaIndividu.java
-        ├── PenerimaKeluarga.java
-        └── Pengajuan.java
-```
+> **Gambar 1. Struktur Project**
+
+![Gambar 1 - Struktur Project](images/struktur-project.png)
 
 Package `app` berisi `Main.java` yang digunakan untuk menjalankan program dan mengatur seluruh menu.
 
 Package `model` berisi class yang digunakan untuk membentuk object dan menyimpan data pada sistem.
 
-### Dokumentasi Struktur Project
-
-> **Gambar 1. Struktur Project**
->
-> Ambil screenshot tampilan **Projects pada NetBeans** yang memperlihatkan:
->
-> - Project `SistemBantuanSosial`
-> - Package `app`
-> - `Main.java`
-> - Package `model`
-> - `Bantuan.java`
-> - `Penerima.java`
-> - `PenerimaIndividu.java`
-> - `PenerimaKeluarga.java`
-> - `Pengajuan.java`
->
-> Screenshot NetBeans yang sudah dibuat sebelumnya dapat digunakan untuk bagian ini.
-
-![Gambar 1 - Struktur Project](images/gambar-01-struktur-project.png)
-
 ---
 
-## 4. Hierarki Class
-
-Class utama yang menjadi dasar penerapan inheritance adalah class `Penerima`.
-
-Hierarki class dapat digambarkan secara sederhana sebagai berikut:
+## 3. Penjelasan Hierarki Class & Penerapan Inheritance
+Hierarki class pada **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** menggambarkan hubungan antara class `Main`, `Penerima`, `PenerimaIndividu`, `PenerimaKeluarga`, `Bantuan`, dan `Pengajuan`.
 
 ```text
-                         Penerima
-                            │
-                ┌───────────┴───────────┐
-                │                       │
-                ▼                       ▼
-       PenerimaIndividu         PenerimaKeluarga
-
-
-        Bantuan                 Pengajuan
-                                   │
-                          ┌────────┴────────┐
-                          │                 │
-                          ▼                 ▼
-                      Penerima          Bantuan
+                         Main
+                          │
+                          │ Mengelola
+                          ▼
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+        ▼                 ▼                 ▼
+    Penerima           Bantuan          Pengajuan
+        ▲                                   │
+        │ Inheritance                       │ Menghubungkan
+        │                                   │
+   ┌────┴─────┐                      ┌──────┴──────┐
+   │          │                      │             │
+   ▼          ▼                      ▼             ▼
+Individu   Keluarga               Penerima      Bantuan
 ```
 
-Penjelasan masing-masing class:
+Berdasarkan hierarki di atas, `Main` merupakan class utama yang mengatur jalannya program. Melalui class ini, program mengelola tiga data utama, yaitu **Penerima**, **Bantuan**, dan **Pengajuan**. Data tersebut disimpan menggunakan `ArrayList` dan kemudian dikelola melalui menu-menu yang tersedia pada program.
+
+Pada bagian **Penerima** terdapat hubungan **inheritance atau pewarisan**. Class `Penerima` berperan sebagai **superclass (class induk)** yang menyimpan data umum seperti ID penerima, NIK, nama, alamat, dan penghasilan. Class tersebut kemudian diturunkan menjadi `PenerimaIndividu` dan `PenerimaKeluarga`. `PenerimaIndividu` memiliki data tambahan berupa pekerjaan dan status rumah, sedangkan `PenerimaKeluarga` memiliki data tambahan berupa jumlah anggota keluarga dan jumlah tanggungan. Dengan inheritance, kedua jenis penerima dapat menggunakan data dan method yang berasal dari class `Penerima` tanpa perlu menuliskannya kembali.
+
+Sementara itu, class `Bantuan` digunakan untuk menyimpan informasi bantuan sosial, seperti ID bantuan, nama bantuan, nominal, dan jumlah kuota yang tersedia.
+
+Class `Pengajuan` berfungsi sebagai **penghubung antara Penerima dan Bantuan**. Ketika penerima membuat pengajuan, object `Pengajuan` akan menyimpan penerima yang mengajukan, bantuan yang dipilih, ID pengajuan, serta status pengajuan. Status awal pengajuan adalah `Menunggu`, kemudian setelah diproses dapat berubah menjadi `Diterima` atau `Ditolak`.
+
+Dengan demikian, alur hubungan antar class dapat dipahami secara sederhana sebagai Main mengelola seluruh data program, Penerima menjadi induk dari PenerimaIndividu dan PenerimaKeluarga, Bantuan menyimpan informasi bantuan yang tersedia, sedangkan Pengajuan menghubungkan Penerima dengan Bantuan yang diajukan. Struktur ini membuat pembagian fungsi setiap class menjadi lebih jelas sekaligus menerapkan konsep Pemrograman Berorientasi Objek, terutama **inheritance, encapsulation, object, dan hubungan antar class**.
+
+Berikut merupakan penjelasan fungsi masing-masing class:
 
 | Class | Fungsi |
 |---|---|
@@ -136,9 +91,9 @@ Penjelasan masing-masing class:
 
 ---
 
-## 5. Penjelasan Class
+## 4. Penjelasan Lengkap Class
 
-### 5.1 Class Penerima
+### 4.1 Class Penerima
 
 `Penerima` merupakan superclass atau class induk yang menyimpan data umum penerima bantuan.
 
@@ -170,7 +125,7 @@ P003
 
 ---
 
-### 5.2 Class PenerimaIndividu
+### 4.2 Class PenerimaIndividu
 
 `PenerimaIndividu` merupakan subclass dari `Penerima`.
 
@@ -189,7 +144,7 @@ Dengan demikian, Penerima Individu tetap memiliki NIK, nama, alamat, dan penghas
 
 ---
 
-### 5.3 Class PenerimaKeluarga
+### 4.3 Class PenerimaKeluarga
 
 `PenerimaKeluarga` juga merupakan subclass dari `Penerima`.
 
@@ -208,7 +163,7 @@ Data tersebut digunakan untuk menyimpan jumlah anggota keluarga dan jumlah tangg
 
 ---
 
-### 5.4 Class Bantuan
+### 4.4 Class Bantuan
 
 Class `Bantuan` digunakan untuk menyimpan informasi bantuan sosial.
 
@@ -244,7 +199,7 @@ Method tersebut digunakan untuk mengurangi kuota sebanyak satu ketika suatu peng
 
 ---
 
-### 5.5 Class Pengajuan
+### 4.5 Class Pengajuan
 
 Class `Pengajuan` digunakan untuk menghubungkan object `Penerima` dengan object `Bantuan`.
 
@@ -286,1124 +241,198 @@ Ditolak
 
 ---
 
-# 6. Penerapan Konsep PBO
+## 5. Alur Program
+Program **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** dijalankan melalui terminal. Pengguna dapat mengelola data penerima, data bantuan, membuat pengajuan, hingga memproses pengajuan bantuan. Secara umum, alur program dimulai dari menu utama kemudian pengguna memilih proses yang ingin dilakukan.
 
-## 6.1 Inheritance
+### 5.1 Menjalankan Program dan Menu Utama
+Saat program pertama kali dijalankan, sistem akan menampilkan menu utama. Menu ini menjadi pusat untuk mengakses seluruh fitur yang tersedia, yaitu mengelola data penerima, mengelola data bantuan, mengelola data pengajuan, dan memproses pengajuan bantuan.
 
-Inheritance diterapkan pada hubungan antara `Penerima`, `PenerimaIndividu`, dan `PenerimaKeluarga`.
-
-```text
-Penerima
-   │
-   ├── PenerimaIndividu
-   │
-   └── PenerimaKeluarga
-```
-
-Pada class `PenerimaIndividu` terdapat:
-
-```java
-public class PenerimaIndividu extends Penerima {
-```
-
-Sedangkan pada `PenerimaKeluarga`:
-
-```java
-public class PenerimaKeluarga extends Penerima {
-```
-
-Keyword `extends` menunjukkan bahwa kedua class tersebut merupakan turunan dari `Penerima`.
-
-Constructor subclass juga menggunakan:
-
-```java
-super(nik, nama, alamat, penghasilan);
-```
-
-`super()` digunakan untuk memanggil constructor milik superclass `Penerima`.
-
-Dengan inheritance, atribut umum seperti NIK, nama, alamat, dan penghasilan tidak perlu ditulis ulang pada masing-masing subclass.
+> **Gambar 2. Tampilan Menu Utama**
+![Gambar 2 - Tampilan Menu Utama](images/struktur-project.png)
 
 ---
 
-## 6.2 Encapsulation
+### 5.2 Menambahkan Data Penerima
+Sebelum membuat pengajuan bantuan, pengguna terlebih dahulu menambahkan data penerima. Sistem menyediakan dua jenis penerima, yaitu **Penerima Individu** dan **Penerima Keluarga**.
 
-Encapsulation diterapkan dengan memberikan access modifier `private` pada atribut.
+Pada penerima individu, pengguna mengisi data seperti NIK, nama, alamat, penghasilan, pekerjaan, dan status rumah. Setelah data berhasil ditambahkan, sistem akan memberikan ID penerima secara otomatis.
 
-Contoh:
+> **Gambar 3. Penambahan Data Penerima Individu**
+![Gambar 3 - Penambahan Data Penerima Individu](images/penerima-individu.png)
 
-```java
-private String nik;
-private String nama;
-private String alamat;
-private double penghasilan;
-```
+Untuk penerima keluarga, pengguna mengisi data umum penerima kemudian dilengkapi dengan jumlah anggota keluarga dan jumlah tanggungan. Sistem juga memberikan ID penerima secara otomatis.
 
-Atribut tersebut kemudian diakses menggunakan getter dan setter.
+> **Gambar 4. Penambahan Data Penerima Keluarga**
+![Gambar 4 - Penambahan Data Penerima Keluarga](images/penerima-keluarga.png)
 
-Contoh getter:
+Setelah beberapa penerima ditambahkan, pengguna dapat menampilkan seluruh data penerima untuk melihat data yang telah tersimpan.
 
-```java
-public String getNama() {
-    return nama;
-}
-```
-
-Contoh setter:
-
-```java
-public void setNama(String nama) {
-    this.nama = nama;
-}
-```
-
-Dengan cara tersebut, data pada object tidak diakses secara langsung dari luar class.
+> **Gambar 5. Tampilan Data Penerima**
+![Gambar 5 - Tampilan Data Penerima](images/tampil-penerima.png)
 
 ---
 
-## 6.3 Constructor
+### 5.3 Mengubah Data Penerima
+Data penerima yang sudah tersimpan dapat diperbarui apabila terdapat perubahan atau kesalahan data. Pengguna memilih ID penerima yang ingin diubah, kemudian memasukkan data terbaru. Sistem akan memperbarui data penerima tanpa mengubah ID penerima tersebut.
 
-Constructor digunakan untuk memberikan nilai awal ketika sebuah object dibuat.
+Fitur ini berfungsi sebagai proses **Update** pada pengelolaan data penerima.
 
-Contoh constructor `Penerima`:
-
-```java
-public Penerima(String nik, String nama, String alamat, double penghasilan) {
-    this.idPenerima = String.format("P%03d", i);
-    i++;
-    this.nik = nik;
-    this.nama = nama;
-    this.alamat = alamat;
-    this.penghasilan = penghasilan;
-}
-```
-
-Ketika object penerima dibuat, data langsung dimasukkan melalui constructor dan ID penerima dibuat secara otomatis.
+> **Gambar 6. Proses Mengubah Data Penerima**
+![Gambar 6 - Proses Mengubah Data Penerima](images/ubah-penerima.png)
 
 ---
 
-## 6.4 ArrayList
+### 5.4 Menambahkan Data Bantuan
+Setelah data penerima tersedia, pengguna dapat menambahkan jenis bantuan sosial yang akan diberikan. Data bantuan terdiri dari nama bantuan, nominal bantuan, dan jumlah kuota yang tersedia.
 
-Program menggunakan `ArrayList` untuk menyimpan data sementara selama program berjalan.
+Setiap bantuan yang berhasil ditambahkan akan mendapatkan ID bantuan secara otomatis. Kuota yang dimasukkan nantinya digunakan untuk menentukan jumlah penerima yang dapat menerima bantuan tersebut.
 
-```java
-ArrayList<Penerima> daftarPenerima = new ArrayList<>();
-ArrayList<Bantuan> daftarBantuan = new ArrayList<>();
-ArrayList<Pengajuan> daftarPengajuan = new ArrayList<>();
-```
+> **Gambar 7. Penambahan Data Bantuan**
+![Gambar 7 - Penambahan Data Bantuan](images/tambah_bantuan.png)
 
-Fungsinya adalah:
+Pengguna juga dapat menampilkan daftar bantuan untuk mengetahui bantuan yang tersedia, nominal bantuan, serta sisa kuotanya.
 
-- `daftarPenerima` menyimpan object Penerima.
-- `daftarBantuan` menyimpan object Bantuan.
-- `daftarPengajuan` menyimpan object Pengajuan.
-
-Karena program belum menggunakan database atau file, seluruh data akan kembali kosong ketika program dihentikan dan dijalankan ulang.
+> **Gambar 8. Tampilan Data Bantuan**
+![Gambar 8 - Tampilan Data Bantuan](images/tampil-bantuan.png)
 
 ---
 
-# 7. Alur Program
+### 5.5 Membuat Pengajuan Bantuan
 
-## 7.1 Menjalankan Program
+Setelah data penerima dan bantuan tersedia, penerima dapat membuat pengajuan bantuan. Pengguna memilih penerima berdasarkan ID penerima, kemudian memilih bantuan berdasarkan ID bantuan.
 
-Program dimulai melalui method:
+Jika data yang dipilih tersedia dan pengajuan berhasil dibuat, sistem akan memberikan ID pengajuan secara otomatis dengan status awal **Menunggu**. Status tersebut menunjukkan bahwa pengajuan sudah tercatat tetapi belum diproses.
 
-```java
-public static void main(String[] args) {
-    Main program = new Main();
-    program.menuUtama();
-}
-```
+> **Gambar 9. Proses Pembuatan Pengajuan Bantuan**
+![Gambar 9 - Proses Pembuatan Pengajuan Bantuan](images/buat-pengajuan.png)
 
-Program membuat object `Main`, kemudian menjalankan method `menuUtama()`.
+Pengguna kemudian dapat melihat seluruh pengajuan yang telah dibuat melalui menu tampilkan pengajuan.
 
-Menu utama menampilkan:
-
-```text
-===========================================
- SISTEM PENGELOLAAN BANSOS DAERAH SAMARINDA
-===========================================
-1. Kelola Data Penerima
-2. Kelola Data Bantuan
-3. Kelola Data Pengajuan
-4. Proses Pengajuan
-0. Keluar
-```
-
-Menu menggunakan perulangan `do-while`, sehingga program akan terus berjalan sampai pengguna memilih `0`.
-
-### Dokumentasi Running Program
-
-> **Gambar 2. Menu Utama Program**
->
-> Jalankan program melalui NetBeans.
->
-> Ambil screenshot pada bagian **Output** ketika menu utama pertama kali muncul.
->
-> Pastikan screenshot memperlihatkan judul program dan pilihan menu `1` sampai `0`.
-
-![Gambar 2 - Menu Utama](images/gambar-02-menu-utama.png)
+> **Gambar 10. Tampilan Data Pengajuan**
+![Gambar 10 - Tampilan Data Pengajuan](images/tampil-pengajuan.png)
 
 ---
 
-# 8. Alur Pengelolaan Data Penerima
+### 5.6 Memproses Pengajuan yang Diterima
 
-## 8.1 Create - Menambahkan Penerima Individu
+Pengajuan yang masih berstatus **Menunggu** dapat diproses untuk menentukan apakah penerima memenuhi ketentuan bantuan.
 
-Pengguna memilih:
+Untuk **Penerima Individu**, pengajuan dapat diterima apabila penghasilannya tidak melebihi batas yang telah ditentukan. Sedangkan untuk **Penerima Keluarga**, sistem mempertimbangkan penghasilan dan jumlah tanggungan.
 
-```text
-Menu Utama
-→ 1. Kelola Data Penerima
-→ 1. Tambah Penerima
-→ 1. Penerima Individu
-```
+Apabila penerima memenuhi ketentuan dan kuota bantuan masih tersedia, status pengajuan akan berubah menjadi **Diterima**. Setelah pengajuan diterima, kuota bantuan secara otomatis berkurang satu.
 
-Program kemudian meminta:
-
-```text
-NIK
-Nama
-Alamat
-Penghasilan
-Pekerjaan
-Status Rumah
-```
-
-Sebelum data disimpan, program melakukan beberapa validasi.
-
-NIK harus memiliki panjang 16 karakter:
-
-```java
-if (nik.length() != 16) {
-    System.out.println("NIK harus 16 digit.");
-}
-```
-
-Program juga memeriksa apakah NIK sudah terdaftar:
-
-```java
-for (Penerima p : daftarPenerima) {
-    if (p.getNik().equals(nik)) {
-        System.out.println("NIK sudah terdaftar.");
-        return;
-    }
-}
-```
-
-Jika seluruh data valid, object dibuat:
-
-```java
-PenerimaIndividu individu =
-        new PenerimaIndividu(
-                nik,
-                nama,
-                alamat,
-                penghasilan,
-                pekerjaan,
-                statusRumah
-        );
-```
-
-Kemudian dimasukkan ke ArrayList:
-
-```java
-daftarPenerima.add(individu);
-```
-
-ID dibuat otomatis, misalnya:
-
-```text
-P001
-```
-
-### Dokumentasi Create Penerima Individu
-
-> **Gambar 3. Create Penerima Individu**
->
-> Tambahkan satu penerima individu.
->
-> Contoh data yang dapat digunakan:
->
-> ```text
-> NIK         : 6472012345678901
-> Nama        : Budi Santoso
-> Alamat      : Samarinda
-> Penghasilan : 2000000
-> Pekerjaan   : Pedagang
-> Status Rumah: Kontrak
-> ```
->
-> Ambil screenshot mulai dari input data sampai muncul:
->
-> ```text
-> Data penerima individu berhasil ditambahkan.
-> ID Penerima : P001
-> ```
-
-![Gambar 3 - Create Penerima Individu](images/gambar-03-create-individu.png)
+> **Gambar 11. Pengajuan Bantuan Diterima**
+![Gambar 11 - Pengajuan Bantuan Diterima](images/diterima.png)
 
 ---
 
-## 8.2 Create - Menambahkan Penerima Keluarga
+### 5.7 Memproses Pengajuan yang Ditolak
 
-Untuk penerima keluarga, pengguna memilih:
+Pengajuan juga dapat ditolak apabila penerima tidak memenuhi ketentuan yang telah ditentukan.
 
-```text
-Menu Utama
-→ Kelola Data Penerima
-→ Tambah Penerima
-→ Penerima Keluarga
-```
+Sebagai contoh, pengajuan penerima individu akan ditolak apabila penghasilannya melebihi batas. Pada penerima keluarga, pengajuan dapat ditolak apabila penghasilan melebihi batas atau tidak mempunyai tanggungan.
 
-Data umum yang dimasukkan tetap berupa NIK, nama, alamat, dan penghasilan.
+Ketika pengajuan ditolak, sistem akan mengubah status menjadi **Ditolak** dan menampilkan alasan penolakan.
 
-Setelah itu program meminta:
-
-```text
-Jumlah Anggota Keluarga
-Jumlah Tanggungan
-```
-
-Program memastikan jumlah anggota keluarga lebih dari 0.
-
-Program juga memastikan jumlah tanggungan tidak negatif dan tidak melebihi jumlah anggota keluarga.
-
-Jika data valid, object:
-
-```java
-PenerimaKeluarga keluarga = new PenerimaKeluarga(
-        nik,
-        nama,
-        alamat,
-        penghasilan,
-        jumlahAnggota,
-        jumlahTanggungan
-);
-```
-
-akan dibuat dan disimpan ke `daftarPenerima`.
-
-### Dokumentasi Create Penerima Keluarga
-
-> **Gambar 4. Create Penerima Keluarga**
->
-> Tambahkan satu penerima keluarga.
->
-> Contoh:
->
-> ```text
-> NIK                     : 6472012345678902
-> Nama                    : Andi Saputra
-> Alamat                  : Samarinda
-> Penghasilan             : 3000000
-> Jumlah Anggota Keluarga : 4
-> Jumlah Tanggungan       : 2
-> ```
->
-> Screenshot harus memperlihatkan proses input sampai muncul:
->
-> ```text
-> Data penerima keluarga berhasil ditambahkan.
-> ID Penerima : P002
-> ```
-
-![Gambar 4 - Create Penerima Keluarga](images/gambar-04-create-keluarga.png)
+> **Gambar 12. Pengajuan Bantuan Ditolak**
+![Gambar 12 - Pengajuan Bantuan Ditolak](images/ditolak.png)
 
 ---
 
-## 8.3 Read - Menampilkan Data Penerima
+### 5.8 Validasi Kuota Bantuan
 
-Menu `Tampilkan Penerima` digunakan untuk membaca seluruh data penerima yang telah tersimpan.
+Program juga melakukan pemeriksaan terhadap kuota bantuan. Jika kuota suatu bantuan sudah habis, penerima tidak dapat membuat pengajuan baru untuk bantuan tersebut.
 
-Program melakukan perulangan:
+Validasi ini digunakan agar jumlah penerima bantuan tidak melebihi kuota yang tersedia.
 
-```java
-for (Penerima p : daftarPenerima)
-```
-
-Kemudian `instanceof` digunakan untuk mengetahui jenis object.
-
-```java
-if (p instanceof PenerimaIndividu)
-```
-
-dan:
-
-```java
-else if (p instanceof PenerimaKeluarga)
-```
-
-Jika object merupakan Penerima Individu, program menampilkan data individu.
-
-Jika object merupakan Penerima Keluarga, program menampilkan data keluarga.
-
-### Dokumentasi Read Penerima
-
-> **Gambar 5. Menampilkan Data Penerima**
->
-> Pilih:
->
-> ```text
-> Kelola Data Penerima
-> → Tampilkan Penerima
-> ```
->
-> Ambil screenshot yang memperlihatkan **P001 sebagai Individu dan P002 sebagai Keluarga dalam satu output**.
->
-> Screenshot ini penting karena sekaligus menunjukkan bahwa inheritance berhasil digunakan untuk menangani dua jenis penerima.
-
-![Gambar 5 - Read Penerima](images/gambar-05-read-penerima.png)
+> **Gambar 13. Validasi Kuota Bantuan Habis**
+![Gambar 13 - Validasi Kuota Bantuan Habis](images/kuota-habis.png)
 
 ---
 
-## 8.4 Update - Mengubah Data Penerima
+### 5.9 Validasi Pengajuan yang Sama
 
-Untuk mengubah penerima, pengguna memilih menu `Ubah Penerima`.
+Sistem mencegah penerima membuat pengajuan yang sama apabila penerima tersebut masih mempunyai pengajuan bantuan yang sama dan pengajuannya belum ditolak.
 
-Program menampilkan seluruh penerima kemudian meminta:
+Fitur ini digunakan untuk menghindari adanya pengajuan ganda dari penerima terhadap bantuan yang sama.
 
-```text
-Masukkan ID Penerima
-```
 
-Program mencari ID tersebut menggunakan perulangan.
-
-Jika ditemukan, data penerima dapat diperbarui melalui setter:
-
-```java
-penerimaDipilih.setNik(nik);
-penerimaDipilih.setNama(nama);
-penerimaDipilih.setAlamat(alamat);
-penerimaDipilih.setPenghasilan(penghasilan);
-```
-
-Data khusus juga diperbarui sesuai jenis penerima.
-
-Contoh Penerima Individu:
-
-```java
-individu.setPekerjaan(pekerjaan);
-individu.setStatusRumah(statusRumah);
-```
-
-ID penerima tidak berubah karena ID merupakan identitas yang dibuat otomatis oleh sistem.
-
-### Dokumentasi Update Penerima
-
-> **Gambar 6. Update Data Penerima**
->
-> Pilih P001 kemudian ubah salah satu atau beberapa datanya.
->
-> Contoh:
->
-> ```text
-> Nama Lama      : Budi Santoso
-> Nama Baru      : Budi Setiawan
-> Pekerjaan Baru : Wiraswasta
-> ```
->
-> Ambil screenshot sampai muncul:
->
-> ```text
-> Data penerima berhasil diubah.
-> ```
->
-> Jika memungkinkan, setelah update buka kembali `Tampilkan Penerima` agar perubahan datanya terlihat.
-
-![Gambar 6 - Update Penerima](images/gambar-06-update-penerima.png)
+> **Gambar 13. Validasi Pengajuan Bantuan yang Sama**
+![Gambar 13 - Validasi Kuota Bantuan Habis](images/valid.png)
 
 ---
 
-## 8.5 Delete - Menghapus Data Penerima
+### 5.10 Menghapus Data Pengajuan
 
-Program menyediakan menu `Hapus Penerima`.
+Pengajuan yang masih berstatus **Menunggu** dapat dihapus apabila terjadi kesalahan dalam pembuatan pengajuan. Pengguna cukup memilih ID pengajuan yang ingin dihapus.
 
-Sebelum penerima dihapus, program memeriksa apakah penerima sudah digunakan dalam pengajuan.
+Namun, pengajuan yang sudah diproses menjadi **Diterima** atau **Ditolak** tidak dapat dihapus karena pengajuan tersebut sudah memiliki hasil proses.
 
-```java
-for (Pengajuan pg : daftarPengajuan) {
-    if (pg.getPenerima().getIdPenerima().equalsIgnoreCase(id)) {
-        System.out.println("Penerima tidak dapat dihapus.");
-        System.out.println("Penerima sudah memiliki data pengajuan.");
-        return;
-    }
-}
-```
-
-Jika belum memiliki pengajuan:
-
-```java
-daftarPenerima.remove(penerimaDipilih);
-```
-
-akan dijalankan.
-
-### Dokumentasi Delete Penerima
-
-> **Gambar 7. Delete Data Penerima**
->
-> Untuk screenshot ini, sebaiknya buat satu penerima tambahan, misalnya P003, yang belum mempunyai pengajuan.
->
-> Kemudian hapus P003.
->
-> Screenshot harus memperlihatkan:
->
-> ```text
-> Masukkan ID Penerima : P003
-> Data penerima berhasil dihapus.
-> ```
-
-![Gambar 7 - Delete Penerima](images/gambar-07-delete-penerima.png)
+> **Gambar 14. Proses Menghapus Pengajuan**
+![Gambar 14 - Proses Menghapus Pengajuan](images/pengajuan-hapus.png)
 
 ---
 
-# 9. Alur Pengelolaan Data Bantuan
+### 5.11 Menghapus Data Penerima dan Bantuan
 
-## 9.1 Create - Menambahkan Bantuan
+Program menyediakan fitur untuk menghapus data penerima maupun bantuan. Data dapat dihapus selama belum digunakan dalam suatu pengajuan.
 
-Pengguna memilih:
+Apabila penerima sudah mempunyai pengajuan, data penerima tidak dapat dihapus. Begitu juga dengan bantuan yang sudah digunakan dalam pengajuan. Pembatasan ini digunakan untuk menjaga agar data pengajuan tetap memiliki hubungan dengan data penerima dan bantuan yang benar.
 
-```text
-Menu Utama
-→ Kelola Data Bantuan
-→ Tambah Bantuan
-```
+> **Gambar 15. Validasi Penghapusan Data Penerima**
+![Gambar 15 - Validasi Penghapusan Data Penerima](images/penerima-gakhapus.png)
 
-Program meminta:
-
-```text
-Nama Bantuan
-Nominal Bantuan
-Kuota
-```
-
-Nominal harus lebih dari 0 dan kuota juga harus lebih dari 0.
-
-Jika valid:
-
-```java
-Bantuan bantuan = new Bantuan(nama, nominal, kuota);
-daftarBantuan.add(bantuan);
-```
-
-ID bantuan dibuat otomatis:
-
-```text
-B001
-B002
-B003
-...
-```
-
-### Dokumentasi Create Bantuan
-
-> **Gambar 8. Create Data Bantuan**
->
-> Buat bantuan dengan kuota kecil agar perubahan kuota nantinya mudah terlihat.
->
-> Contoh:
->
-> ```text
-> Nama Bantuan    : Bantuan Sembako
-> Nominal Bantuan : 500000
-> Kuota           : 2
-> ```
->
-> Ambil screenshot sampai muncul:
->
-> ```text
-> Data bantuan berhasil ditambahkan.
-> ID Bantuan : B001
-> ```
-
-![Gambar 8 - Create Bantuan](images/gambar-08-create-bantuan.png)
+> **Gambar 16. Validasi Penghapusan Data Bantuan**
+![Gambar 16 - Validasi Penghapusan Data Bantuan](images/bantuan-hapus.png)
 
 ---
 
-## 9.2 Read - Menampilkan Data Bantuan
+## 6. Gambaran Alur Keseluruhan Program
 
-Menu `Tampilkan Bantuan` akan melakukan perulangan terhadap seluruh object `Bantuan`.
+Secara keseluruhan, program dimulai dengan menyiapkan **data penerima** dan **data bantuan**. Setelah kedua data tersebut tersedia, pengguna dapat membuat **pengajuan bantuan** dengan memilih penerima dan bantuan yang diinginkan.
 
-```java
-for (Bantuan b : daftarBantuan) {
-    b.tampilData();
-}
-```
+Pengajuan yang berhasil dibuat akan memiliki status awal **Menunggu**. Selanjutnya pengajuan diproses berdasarkan jenis penerima, penghasilan, jumlah tanggungan untuk penerima keluarga, serta ketersediaan kuota bantuan.
 
-Informasi yang ditampilkan berupa:
+Apabila memenuhi ketentuan, pengajuan akan **Diterima** dan kuota bantuan berkurang. Apabila tidak memenuhi ketentuan, pengajuan akan **Ditolak** beserta alasan penolakannya.
+
+Alur sederhananya dapat digambarkan sebagai berikut:
 
 ```text
-ID Bantuan
-Nama Bantuan
-Nominal
-Kuota
-```
-
-### Dokumentasi Read Bantuan
-
-> **Gambar 9. Menampilkan Data Bantuan**
->
-> Buka:
->
-> ```text
-> Kelola Data Bantuan
-> → Tampilkan Bantuan
-> ```
->
-> Pastikan B001 terlihat dengan kuota awal `2`.
->
-> Screenshot ini nantinya dapat dibandingkan dengan kuota setelah pengajuan diterima.
-
-![Gambar 9 - Read Bantuan](images/gambar-09-read-bantuan.png)
-
----
-
-## 9.3 Delete - Menghapus Bantuan
-
-Bantuan dapat dihapus apabila belum digunakan dalam pengajuan.
-
-Jika bantuan sudah digunakan, program menampilkan:
-
-```text
-Bantuan tidak dapat dihapus.
-Bantuan sudah digunakan dalam pengajuan.
-```
-
-Validasi tersebut menjaga agar data pengajuan tidak kehilangan data bantuan yang digunakan.
-
-### Dokumentasi Delete Bantuan
-
-> **Gambar 10. Validasi Delete Bantuan**
->
-> Screenshot ini sebaiknya diambil **setelah B001 digunakan untuk membuat pengajuan**.
->
-> Coba hapus B001.
->
-> Ambil screenshot ketika muncul:
->
-> ```text
-> Bantuan tidak dapat dihapus.
-> Bantuan sudah digunakan dalam pengajuan.
-> ```
->
-> Screenshot ini menunjukkan bahwa program memiliki validasi ketika melakukan Delete.
-
-![Gambar 10 - Validasi Delete Bantuan](images/gambar-10-delete-bantuan.png)
-
----
-
-# 10. Alur Pengajuan Bantuan
-
-## 10.1 Create - Membuat Pengajuan
-
-Sebelum membuat pengajuan, program memeriksa apakah data penerima dan bantuan tersedia.
-
-Pengguna kemudian memilih ID penerima.
-
-```text
-Masukkan ID Penerima : P001
-```
-
-Program mencari object penerima berdasarkan ID tersebut.
-
-Setelah penerima ditemukan, pengguna memilih bantuan:
-
-```text
-Masukkan ID Bantuan : B001
-```
-
-Program kemudian melakukan beberapa validasi.
-
-Alur sederhananya:
-
-```text
-Pilih Penerima
+Program Dimulai
       │
       ▼
-Penerima ditemukan?
+Tambah Data Penerima
       │
       ▼
-Pilih Bantuan
-      │
-      ▼
-Bantuan ditemukan?
-      │
-      ▼
-Sudah mengajukan bantuan yang sama?
-      │
-      ▼
-Kuota masih tersedia?
+Tambah Data Bantuan
       │
       ▼
 Buat Pengajuan
       │
       ▼
-Status = Menunggu
+Status "Menunggu"
+      │
+      ▼
+Proses Pengajuan
+      │
+      ├───────────────┐
+      ▼               ▼
+   Diterima         Ditolak
+      │               │
+      ▼               ▼
+Kuota Berkurang   Alasan Ditampilkan
+      │               │
+      └───────┬───────┘
+              ▼
+       Data Pengajuan
+        Dapat Dilihat
 ```
 
-Jika seluruh kondisi terpenuhi:
-
-```java
-Pengajuan pengajuan =
-        new Pengajuan(penerimaDipilih, bantuanDipilih);
-
-daftarPengajuan.add(pengajuan);
-```
-
-ID pengajuan dibuat otomatis dan status awalnya `Menunggu`.
-
-### Dokumentasi Create Pengajuan
-
-> **Gambar 11. Create Pengajuan Bantuan**
->
-> Gunakan:
->
-> ```text
-> Penerima : P001
-> Bantuan  : B001
-> ```
->
-> Ambil screenshot sampai terlihat:
->
-> ```text
-> Pengajuan berhasil dibuat.
-> ID Pengajuan : PG001
-> Status       : Menunggu
-> ```
-
-![Gambar 11 - Create Pengajuan](images/gambar-11-create-pengajuan.png)
+Dengan alur tersebut, program sudah menggambarkan proses sederhana pengelolaan bantuan sosial mulai dari **pendataan penerima, pendataan bantuan, pembuatan pengajuan, pemeriksaan pengajuan, sampai penentuan hasil pengajuan bantuan**.
 
 ---
 
-## 10.2 Read - Menampilkan Data Pengajuan
-
-Menu `Tampilkan Pengajuan` digunakan untuk menampilkan seluruh pengajuan.
-
-Program melakukan:
-
-```java
-for (Pengajuan pg : daftarPengajuan) {
-    pg.tampilData();
-}
-```
-
-Data yang ditampilkan meliputi:
-
-```text
-ID Pengajuan
-Nama Penerima
-Nama Bantuan
-Status
-```
-
-### Dokumentasi Read Pengajuan
-
-> **Gambar 12. Data Pengajuan Sebelum Diproses**
->
-> Buka:
->
-> ```text
-> Kelola Data Pengajuan
-> → Tampilkan Pengajuan
-> ```
->
-> Ambil screenshot yang memperlihatkan:
->
-> ```text
-> ID Pengajuan : PG001
-> Penerima     : ...
-> Bantuan      : Bantuan Sembako
-> Status       : Menunggu
-> ```
-
-![Gambar 12 - Read Pengajuan](images/gambar-12-read-pengajuan.png)
-
----
-
-# 11. Alur Proses dan Verifikasi Pengajuan
-
-## 11.1 Memproses Pengajuan Individu
-
-Pengguna memilih:
-
-```text
-Menu Utama
-→ Proses Pengajuan
-```
-
-Kemudian memasukkan ID pengajuan:
-
-```text
-PG001
-```
-
-Program memastikan bahwa status pengajuan masih:
-
-```text
-Menunggu
-```
-
-Setelah itu program mengambil object penerima dan bantuan:
-
-```java
-Penerima penerima = pengajuanDipilih.getPenerima();
-Bantuan bantuan = pengajuanDipilih.getBantuan();
-```
-
-Untuk `PenerimaIndividu`, syarat yang digunakan adalah:
-
-```text
-Penghasilan <= Rp2.500.000
-```
-
-Pemeriksaan dilakukan dengan:
-
-```java
-if (penerima.getPenghasilan() <= 2500000) {
-```
-
-Jika memenuhi syarat:
-
-```java
-pengajuanDipilih.setStatusPengajuan("Diterima");
-bantuan.kurangiKuota();
-```
-
-Status berubah menjadi `Diterima` dan kuota bantuan berkurang satu.
-
-### Dokumentasi Pengajuan Diterima
-
-> **Gambar 13. Proses Pengajuan Diterima**
->
-> Karena contoh P001 memiliki penghasilan Rp2.000.000, proses PG001.
->
-> Ambil screenshot yang memperlihatkan:
->
-> ```text
-> Nama        : ...
-> Bantuan     : Bantuan Sembako
-> Penghasilan : Rp. 2000000
-> Kuota       : 2
->
-> Pengajuan DITERIMA.
-> Sisa Kuota : 1
-> ```
->
-> Screenshot ini penting karena membuktikan proses verifikasi dan pengurangan kuota berjalan.
-
-![Gambar 13 - Pengajuan Diterima](images/gambar-13-pengajuan-diterima.png)
-
----
-
-## 11.2 Perubahan Kuota Setelah Pengajuan Diterima
-
-Ketika pengajuan diterima, program menjalankan:
-
-```java
-bantuan.kurangiKuota();
-```
-
-Method pada class `Bantuan`:
-
-```java
-public void kurangiKuota() {
-    if (kuota > 0) {
-        kuota--;
-    }
-}
-```
-
-Contohnya:
-
-```text
-Kuota Awal  : 2
-Pengajuan   : Diterima
-Kuota Akhir : 1
-```
-
-### Dokumentasi Perubahan Kuota
-
-> **Gambar 14. Kuota Setelah Pengajuan Diterima**
->
-> Setelah PG001 diterima, kembali ke:
->
-> ```text
-> Kelola Data Bantuan
-> → Tampilkan Bantuan
-> ```
->
-> Ambil screenshot B001.
->
-> Jika pada Gambar 9 kuotanya `2`, pada gambar ini harus terlihat menjadi:
->
-> ```text
-> Kuota : 1
-> ```
-
-![Gambar 14 - Perubahan Kuota](images/gambar-14-kuota-berkurang.png)
-
----
-
-## 11.3 Pengajuan Ditolak
-
-Program juga dapat menolak pengajuan apabila penerima tidak memenuhi persyaratan.
-
-Untuk Penerima Individu:
-
-```text
-Penghasilan > Rp2.500.000
-→ Ditolak
-```
-
-Untuk Penerima Keluarga:
-
-```text
-Penghasilan > Rp3.500.000
-atau
-Jumlah Tanggungan < 1
-→ Ditolak
-```
-
-### Dokumentasi Pengajuan Ditolak
-
-> **Gambar 15. Proses Pengajuan Ditolak**
->
-> Buat penerima tambahan dengan penghasilan yang tidak memenuhi syarat.
->
-> Contoh Penerima Individu:
->
-> ```text
-> Penghasilan : 4000000
-> ```
->
-> Buat pengajuan menggunakan bantuan yang masih mempunyai kuota, kemudian proses pengajuan tersebut.
->
-> Ambil screenshot ketika muncul:
->
-> ```text
-> Pengajuan DITOLAK.
-> Alasan: Penghasilan melebihi batas.
-> ```
-
-![Gambar 15 - Pengajuan Ditolak](images/gambar-15-pengajuan-ditolak.png)
-
----
-
-# 12. Validasi Pengajuan Ganda
-
-Program mencegah penerima membuat pengajuan yang sama apabila sebelumnya masih memiliki pengajuan yang belum ditolak.
-
-Pengecekan dilakukan dengan membandingkan:
-
-```text
-ID Penerima
-+
-ID Bantuan
-+
-Status Pengajuan
-```
-
-Jika ditemukan pengajuan yang sama:
-
-```text
-Pengajuan gagal.
-Penerima sudah mengajukan bantuan tersebut.
-```
-
-### Dokumentasi Validasi Pengajuan Ganda
-
-> **Gambar 16. Validasi Pengajuan Ganda**
->
-> Setelah PG001 diterima, coba buat pengajuan lagi menggunakan:
->
-> ```text
-> Penerima : P001
-> Bantuan  : B001
-> ```
->
-> Ambil screenshot ketika program menampilkan:
->
-> ```text
-> Pengajuan gagal.
-> Penerima sudah mengajukan bantuan tersebut.
-> ```
-
-![Gambar 16 - Validasi Pengajuan Ganda](images/gambar-16-pengajuan-ganda.png)
-
----
-
-# 13. Validasi Kuota Habis
-
-Program memeriksa kuota sebelum pengajuan dibuat dan ketika pengajuan diproses.
-
-Pengecekan dilakukan dengan:
-
-```java
-if (bantuanDipilih.getKuota() <= 0) {
-    System.out.println("Pengajuan gagal.");
-    System.out.println("Kuota bantuan sudah habis.");
-    return;
-}
-```
-
-Dengan demikian, bantuan dengan kuota `0` tidak dapat digunakan untuk membuat pengajuan baru.
-
-### Dokumentasi Kuota Habis
-
-> **Gambar 17. Validasi Kuota Bantuan Habis**
->
-> Untuk mempermudah pengujian, buat bantuan lain dengan kuota `1`.
->
-> Gunakan bantuan tersebut sampai satu pengajuan diterima sehingga kuotanya menjadi `0`.
->
-> Setelah itu gunakan penerima lain yang belum pernah mengajukan bantuan tersebut dan coba membuat pengajuan.
->
-> Ambil screenshot ketika muncul:
->
-> ```text
-> Pengajuan gagal.
-> Kuota bantuan sudah habis.
-> ```
-
-![Gambar 17 - Kuota Habis](images/gambar-17-kuota-habis.png)
-
----
-
-# 14. Validasi Pengajuan yang Sudah Diproses
-
-Pengajuan yang sudah memiliki status `Diterima` atau `Ditolak` tidak dapat diproses kembali.
-
-Program memeriksa:
-
-```java
-if (!pengajuanDipilih.getStatusPengajuan().equalsIgnoreCase("Menunggu")) {
-    System.out.println("Pengajuan sudah pernah diproses.");
-    System.out.println("Status : " + pengajuanDipilih.getStatusPengajuan());
-    return;
-}
-```
-
-Validasi ini juga mencegah kuota berkurang berulang kali akibat pengajuan yang sama diproses lebih dari satu kali.
-
-### Dokumentasi Proses Ulang Pengajuan
-
-> **Gambar 18. Validasi Pengajuan yang Sudah Diproses**
->
-> Coba proses kembali PG001 yang sebelumnya sudah diterima.
->
-> Ambil screenshot ketika muncul:
->
-> ```text
-> Pengajuan sudah pernah diproses.
-> Status : Diterima
-> ```
-
-![Gambar 18 - Pengajuan Sudah Diproses](images/gambar-18-proses-ulang.png)
-
----
-
-# 15. Delete Pengajuan
-
-Pengajuan hanya dapat dihapus apabila statusnya masih `Menunggu`.
-
-Jika status sudah `Diterima` atau `Ditolak`, program akan menampilkan:
-
-```text
-Pengajuan tidak dapat dihapus.
-Pengajuan sudah diproses.
-```
-
-Hal ini dilakukan agar riwayat pengajuan yang sudah diproses tidak hilang.
-
-### Dokumentasi Validasi Delete Pengajuan
-
-> **Gambar 19. Validasi Delete Pengajuan**
->
-> Coba hapus PG001 yang sebelumnya sudah diterima.
->
-> Ambil screenshot ketika muncul:
->
-> ```text
-> Pengajuan tidak dapat dihapus.
-> Pengajuan sudah diproses.
-> ```
-
-![Gambar 19 - Delete Pengajuan](images/gambar-19-delete-pengajuan.png)
-
----
-
-# 16. Alur Keseluruhan Program
-
-Secara keseluruhan, proses utama sistem dapat digambarkan sebagai berikut:
-
-```text
-                         MULAI
-                           │
-                           ▼
-                      Menu Utama
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-          ▼                ▼                ▼
-      Penerima          Bantuan         Pengajuan
-          │                │                │
-          ▼                ▼                ▼
-      Tambah Data      Tambah Data     Pilih Penerima
-          │                │                │
-          ▼                ▼                ▼
-      Validasi Data    Validasi Data     Pilih Bantuan
-          │                │                │
-          ▼                ▼                ▼
-     Simpan ArrayList  Simpan ArrayList  Cek Pengajuan
-                                            │
-                                            ▼
-                                        Cek Kuota
-                                            │
-                                            ▼
-                                     Buat Pengajuan
-                                            │
-                                            ▼
-                                      Status Menunggu
-                                            │
-                                            ▼
-                                     Proses Pengajuan
-                                            │
-                            ┌───────────────┴───────────────┐
-                            │                               │
-                            ▼                               ▼
-                    Tidak Memenuhi                    Memenuhi Syarat
-                            │                               │
-                            ▼                               ▼
-                         Ditolak                         Diterima
-                                                            │
-                                                            ▼
-                                                     Kuota Berkurang
-                                                            │
-                                                            ▼
-                                                         SELESAI
-```
-
----
-
-# 17. Penerapan CRUD
-
-Konsep CRUD diterapkan terutama pada pengelolaan data penerima.
-
-| Operasi | Implementasi |
-|---|---|
-| **Create** | Menambahkan data penerima |
-| **Read** | Menampilkan data penerima |
-| **Update** | Mengubah data penerima |
-| **Delete** | Menghapus data penerima |
-
-Data bantuan menerapkan proses tambah, tampil, dan hapus sesuai kebutuhan program.
-
-Data pengajuan menerapkan proses buat, tampil, hapus, serta proses verifikasi pengajuan.
-
----
-
-# 18. Validasi yang Diterapkan
+# 7. Validasi yang Diterapkan
 
 Beberapa validasi yang diterapkan dalam program yaitu:
 
@@ -1427,9 +456,9 @@ Beberapa validasi yang diterapkan dalam program yaitu:
 
 ---
 
-# 19. Skenario Pengujian Program
+# 8. Skenario Pengujian Program
 
-Untuk memastikan program berjalan sesuai rancangan, berikut beberapa skenario pengujian yang dapat dilakukan:
+Agar pasti program berjalan sesuai rancangan, berikut beberapa skenario pengujian yang dapat dilakukan:
 
 | No | Pengujian | Hasil yang Diharapkan |
 |---|---|---|
@@ -1451,46 +480,7 @@ Untuk memastikan program berjalan sesuai rancangan, berikut beberapa skenario pe
 
 ---
 
-# 20. Daftar Screenshot Dokumentasi
-
-Agar dokumentasi repository tersusun rapi, seluruh screenshot dapat disimpan pada folder:
-
-```text
-images/
-```
-
-Gunakan nama file berikut:
-
-```text
-images/
-├── gambar-01-struktur-project.png
-├── gambar-02-menu-utama.png
-├── gambar-03-create-individu.png
-├── gambar-04-create-keluarga.png
-├── gambar-05-read-penerima.png
-├── gambar-06-update-penerima.png
-├── gambar-07-delete-penerima.png
-├── gambar-08-create-bantuan.png
-├── gambar-09-read-bantuan.png
-├── gambar-10-delete-bantuan.png
-├── gambar-11-create-pengajuan.png
-├── gambar-12-read-pengajuan.png
-├── gambar-13-pengajuan-diterima.png
-├── gambar-14-kuota-berkurang.png
-├── gambar-15-pengajuan-ditolak.png
-├── gambar-16-pengajuan-ganda.png
-├── gambar-17-kuota-habis.png
-├── gambar-18-proses-ulang.png
-└── gambar-19-delete-pengajuan.png
-```
-
-Tidak semua screenshot harus memperlihatkan seluruh NetBeans. Screenshot dapat difokuskan pada bagian **Output** agar tulisan mudah dibaca.
-
-Namun untuk **Gambar 1 Struktur Project**, screenshot sebaiknya memperlihatkan panel Projects pada NetBeans.
-
----
-
-# 21. Kesimpulan
+# 9. Kesimpulan
 
 **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** merupakan program berbasis Java yang digunakan untuk mengelola data penerima, bantuan, serta proses pengajuan bantuan sosial.
 

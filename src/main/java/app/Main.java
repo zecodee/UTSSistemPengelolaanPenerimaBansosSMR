@@ -312,23 +312,28 @@ public class Main {
             return;
         }
 
-        System.out.print("NIK Baru : ");
-        String nik = input.nextLine();
+        String nik;
+        boolean nikDuplikat;
 
-        while (nik.length() != 16) {
-            System.out.println("NIK harus 16 digit.");
+        do {
             System.out.print("NIK Baru : ");
             nik = input.nextLine();
-        }
-        
-        for (Penerima p : daftarPenerima) {
-            if (p.getNik().equals(nik)
-                    && !p.getIdPenerima().equalsIgnoreCase(penerimaDipilih.getIdPenerima())) {
 
-                System.out.println("NIK sudah digunakan penerima lain.");
-                return;
+            if (nik.length() != 16) {
+                System.out.println("NIK harus 16 digit.");
+                nikDuplikat = false;
+                continue;
             }
-        }
+
+            nikDuplikat = false;
+            for (Penerima p : daftarPenerima) {
+                if (p.getNik().equals(nik) && !p.getIdPenerima().equalsIgnoreCase(penerimaDipilih.getIdPenerima())) {
+                    System.out.println("NIK sudah digunakan penerima lain.");
+                    nikDuplikat = true;
+                    break;
+                }
+            }
+        } while (nik.length() != 16 || nikDuplikat);
 
         System.out.print("Nama Baru : ");
         String nama = input.nextLine();
@@ -344,7 +349,7 @@ public class Main {
                 System.out.println("Penghasilan tidak boleh negatif.");
             }
         } while (penghasilan < 0);
-        
+
         input.nextLine();
         penerimaDipilih.setNik(nik);
         penerimaDipilih.setNama(nama);
@@ -362,31 +367,20 @@ public class Main {
 
         } else if (penerimaDipilih instanceof PenerimaKeluarga) {
             PenerimaKeluarga keluarga = (PenerimaKeluarga) penerimaDipilih;
-            System.out.print("Jumlah Anggota Keluarga : ");
-            int jumlahAnggota = input.nextInt();
-            
+            int jumlahAnggota;
+
             do {
-                System.out.print("Jumlah Anggota Keluarga : ");
+                System.out.print("Jumlah Anggota Keluarga Baru : ");
                 jumlahAnggota = input.nextInt();
 
                 if (jumlahAnggota <= 0) {
                     System.out.println("Jumlah anggota keluarga harus lebih dari 0.");
                 }
             } while (jumlahAnggota <= 0);
-            
-            System.out.print("Jumlah Tanggungan : ");
-            int jumlahTanggungan = input.nextInt();
-            do {
-                System.out.print("Jumlah Tanggungan : ");
-                jumlahTanggungan = input.nextInt();
 
-                if (jumlahTanggungan < 0) {
-                    System.out.println("Jumlah tanggungan tidak boleh negatif.");
-                }
-            } while (jumlahTanggungan < 0);
-            
+            int jumlahTanggungan;
             do {
-                System.out.print("Jumlah Tanggungan : ");
+                System.out.print("Jumlah Tanggungan Baru : ");
                 jumlahTanggungan = input.nextInt();
 
                 if (jumlahTanggungan < 0) {
@@ -394,9 +388,8 @@ public class Main {
                 } else if (jumlahTanggungan > jumlahAnggota) {
                     System.out.println("Jumlah tanggungan tidak boleh melebihi jumlah anggota keluarga.");
                 }
-
             } while (jumlahTanggungan < 0 || jumlahTanggungan > jumlahAnggota);
-            
+
             input.nextLine();
 
             keluarga.setAnggotaKeluarga(jumlahAnggota);
