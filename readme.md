@@ -52,7 +52,7 @@ Package `model` berisi class yang digunakan untuk membentuk object dan menyimpan
 Hierarki class pada **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** menggambarkan hubungan antara class `Main`, `Penerima`, `PenerimaIndividu`, `PenerimaKeluarga`, `Bantuan`, dan `Pengajuan`.
 
 > **Gambar 2. Hierarki Class**
-![Gambar 2 - Hierarki Class](images/struktur-project.png)
+![Gambar 2 - Hierarki Class](images/hierarki.png)
 
 Berdasarkan hierarki di atas, `Main` merupakan class utama yang mengatur jalannya program. Melalui class ini, program mengelola tiga data utama, yaitu **Penerima**, **Bantuan**, dan **Pengajuan**. Data tersebut disimpan menggunakan `ArrayList` dan kemudian dikelola melalui menu-menu yang tersedia pada program.
 
