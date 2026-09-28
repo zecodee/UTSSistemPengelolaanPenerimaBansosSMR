@@ -36,9 +36,10 @@ public class PenerimaIndividu extends Penerima {
         this.statusRumah = statusRumah;
     }
 
-    public void tampilDataIndividu() {
-        tampilData();
-        System.out.println("Tipe                        : Individu");        
+    @Override
+    public void tampilData() {
+        super.tampilData();
+        System.out.println("Tipe                        : Individu");
         System.out.println("Pekerjaan                   : " + pekerjaan);
         System.out.println("Status Rumah                : " + statusRumah);
     }

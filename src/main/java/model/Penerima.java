@@ -9,7 +9,7 @@ package model;
  * @author zefrialrizkullah
  */
 public class Penerima {
-    private String idPenerima;
+    private final String idPenerima;
     private String nik;
     private String nama;
     private String alamat;
@@ -58,7 +58,9 @@ public class Penerima {
     }
 
     public void setPenghasilan(double penghasilan) {
-        this.penghasilan = penghasilan;
+        if (penghasilan >= 0) {
+            this.penghasilan = penghasilan;
+        }
     }
 
     public void tampilData() {

@@ -1,6 +1,6 @@
 # Sistem Pengelolaan Bantuan Sosial Daerah Samarinda
 
-## Project Pemrograman Berorientasi Objek
+## UTS Project Pemrograman Berorientasi Objek (Ulangan Tengah Semester)
 
 **Nama:** Zefri Al Rizqullah  
 
@@ -34,6 +34,10 @@ Sedangkan **Penerima Keluarga** memiliki data tambahan berupa:
 
 Selain mengelola penerima, program juga dapat mengelola data bantuan dan pengajuan bantuan. Setiap pengajuan akan melalui proses pemeriksaan untuk menentukan apakah pengajuan **diterima** atau **ditolak** berdasarkan kriteria yang telah ditentukan.
 
+Program dilengkapi dengan **dashboard ringkasan** yang menampilkan jumlah penerima, jenis bantuan, total pengajuan, serta jumlah pengajuan berdasarkan statusnya. Program juga menyediakan **menu laporan** untuk melihat ringkasan data penerima, bantuan, pengajuan berdasarkan status, dan statistik bantuan sosial.
+
+Setiap pengajuan yang telah diproses juga menyimpan **keterangan hasil pengajuan**. Keterangan tersebut memberikan informasi mengenai alasan pengajuan diterima atau ditolak.
+
 ---
 
 ## 2. Struktur Project
@@ -60,7 +64,7 @@ Pada bagian **Penerima** terdapat hubungan **inheritance atau pewarisan**. Class
 
 Sementara itu, class `Bantuan` digunakan untuk menyimpan informasi bantuan sosial, seperti ID bantuan, nama bantuan, nominal, dan jumlah kuota yang tersedia.
 
-Class `Pengajuan` berfungsi sebagai **penghubung antara Penerima dan Bantuan**. Ketika penerima membuat pengajuan, object `Pengajuan` akan menyimpan penerima yang mengajukan, bantuan yang dipilih, ID pengajuan, serta status pengajuan. Status awal pengajuan adalah `Menunggu`, kemudian setelah diproses dapat berubah menjadi `Diterima` atau `Ditolak`.
+Class `Pengajuan` berfungsi sebagai **penghubung antara Penerima dan Bantuan**. Ketika penerima membuat pengajuan, object `Pengajuan` akan menyimpan penerima yang mengajukan, bantuan yang dipilih, ID pengajuan, status pengajuan, serta keterangan hasil proses. Status awal pengajuan adalah `Menunggu` dengan keterangan `Belum diproses`. Setelah diproses, status dapat berubah menjadi `Diterima` atau `Ditolak` dan sistem akan menyimpan keterangan mengenai hasil pengajuan tersebut.
 
 Dengan demikian, alur hubungan antar class dapat dipahami secara sederhana sebagai Main mengelola seluruh data program, Penerima menjadi induk dari PenerimaIndividu dan PenerimaKeluarga, Bantuan menyimpan informasi bantuan yang tersedia, sedangkan Pengajuan menghubungkan Penerima dengan Bantuan yang diajukan. Struktur ini membuat pembagian fungsi setiap class menjadi lebih jelas sekaligus menerapkan konsep Pemrograman Berorientasi Objek, terutama **inheritance, encapsulation, object, dan hubungan antar class**.
 
@@ -73,7 +77,7 @@ Berikut merupakan penjelasan fungsi masing-masing class:
 | `PenerimaIndividu` | Menyimpan data khusus penerima individu |
 | `PenerimaKeluarga` | Menyimpan data khusus penerima keluarga |
 | `Bantuan` | Menyimpan informasi bantuan sosial |
-| `Pengajuan` | Menghubungkan penerima dengan bantuan yang diajukan |
+| `Pengajuan` | Menghubungkan penerima dengan bantuan serta menyimpan status dan keterangan hasil pengajuan |
 
 ---
 
@@ -185,7 +189,7 @@ Method tersebut digunakan untuk mengurangi kuota sebanyak satu ketika suatu peng
 
 ### 4.5 Class Pengajuan
 
-Class `Pengajuan` digunakan untuk menghubungkan object `Penerima` dengan object `Bantuan`.
+Class `Pengajuan` digunakan untuk menghubungkan object `Penerima` dengan object `Bantuan` serta menyimpan hasil proses pengajuan.
 
 Atribut utamanya yaitu:
 
@@ -228,10 +232,22 @@ Ditolak
 Program **Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** dijalankan melalui terminal. Pengguna dapat mengelola data penerima, data bantuan, membuat pengajuan, hingga memproses pengajuan bantuan. Secara umum, alur program dimulai dari menu utama kemudian pengguna memilih proses yang ingin dilakukan.
 
 ### 5.1 Menjalankan Program dan Menu Utama
-Saat program pertama kali dijalankan, sistem akan menampilkan menu utama. Menu ini menjadi pusat untuk mengakses seluruh fitur yang tersedia, yaitu mengelola data penerima, mengelola data bantuan, mengelola data pengajuan, dan memproses pengajuan bantuan.
+Saat program pertama kali dijalankan, sistem akan menampilkan **dashboard ringkasan** dan menu utama. Dashboard memberikan informasi singkat mengenai kondisi data yang sedang tersimpan pada sistem.
+
+Informasi yang ditampilkan pada dashboard meliputi:
+- Total penerima
+- Total jenis bantuan
+- Total pengajuan
+- Pengajuan berstatus Menunggu
+- Pengajuan berstatus Diterima
+- Pengajuan berstatus Ditolak
+
+Setelah dashboard ditampilkan, pengguna dapat memilih fitur melalui menu utama. Menu yang tersedia terdiri dari **Kelola Data Penerima, Kelola Data Bantuan, Kelola Data Pengajuan, Proses Pengajuan, dan Laporan Bansos**.
+
+Dashboard akan ditampilkan kembali ketika pengguna kembali ke menu utama sehingga perubahan jumlah data dan status pengajuan dapat langsung terlihat.
 
 > **Gambar 3. Tampilan Menu Utama**
-![Gambar 3 - Tampilan Menu Utama](images/struktur-project.png)
+![Gambar 3 - Tampilan Menu Utama](images/menu-utama.png)
 
 ---
 
@@ -289,7 +305,9 @@ Jika data yang dipilih tersedia dan pengajuan berhasil dibuat, sistem akan membe
 > **Gambar 10. Proses Pembuatan Pengajuan Bantuan**
 ![Gambar 10 - Proses Pembuatan Pengajuan Bantuan](images/buat-pengajuan.png)
 
-Pengguna kemudian dapat melihat seluruh pengajuan yang telah dibuat melalui menu tampilkan pengajuan.
+Pengguna kemudian dapat melihat seluruh pengajuan yang telah dibuat melalui menu tampilkan pengajuan. Setiap data menampilkan ID pengajuan, nama penerima, bantuan yang diajukan, status, serta keterangan hasil pengajuan.
+
+Pengajuan yang belum diproses memiliki status **Menunggu** dengan keterangan **Belum diproses**. Setelah pengajuan diproses, bagian keterangan akan memberikan informasi mengenai alasan pengajuan diterima atau ditolak.
 
 > **Gambar 11. Tampilan Data Pengajuan**
 ![Gambar 11 - Tampilan Data Pengajuan](images/tampil-pengajuan.png)
@@ -370,20 +388,72 @@ Apabila penerima sudah mempunyai pengajuan, data penerima tidak dapat dihapus. B
 
 ---
 
+### 5.12 Menu Laporan Bansos
+
+Program menyediakan **Menu Laporan Bansos** untuk melihat rangkuman data yang telah dikelola pada sistem. Menu ini membantu pengguna melihat informasi penting tanpa harus membuka setiap menu pengelolaan data secara terpisah.
+
+Menu laporan menyediakan beberapa pilihan:
+
+1. **Ringkasan Penerima**, menampilkan jumlah seluruh penerima serta jumlah Penerima Individu dan Penerima Keluarga.
+2. **Ringkasan Bantuan**, menampilkan data bantuan beserta nominal, sisa kuota, total jenis bantuan, dan total sisa kuota.
+3. **Pengajuan Menunggu**, menampilkan pengajuan yang belum diproses.
+4. **Pengajuan Diterima**, menampilkan pengajuan yang telah memenuhi kriteria.
+5. **Pengajuan Ditolak**, menampilkan pengajuan yang tidak memenuhi kriteria.
+6. **Statistik Bansos**, menampilkan rangkuman keseluruhan data penerima, bantuan, dan pengajuan.
+
+Dengan adanya menu laporan, pengguna dapat melihat hasil pengelolaan bantuan sosial secara lebih terstruktur berdasarkan informasi yang dibutuhkan.
+
+> **Gambar 19. Tampilan Menu Laporan Bansos**
+![Gambar 19 - Tampilan Menu Laporan Bansos](images/menu-laporan.png)
+
+---
+
+### 5.13 Statistik Bansos
+
+Fitur **Statistik Bansos** digunakan untuk memberikan gambaran keseluruhan mengenai data yang sedang tersimpan pada program.
+
+Statistik dibagi menjadi tiga kelompok informasi utama:
+
+- **Data Penerima**, berisi total penerima, jumlah penerima individu, dan jumlah penerima keluarga.
+- **Data Bantuan**, berisi jumlah jenis bantuan dan total sisa kuota.
+- **Data Pengajuan**, berisi total pengajuan serta jumlah pengajuan berstatus Menunggu, Diterima, dan Ditolak.
+
+Data statistik dihitung secara otomatis berdasarkan isi `ArrayList` sehingga hasil yang ditampilkan akan mengikuti perubahan data selama program dijalankan.
+
+> **Gambar 20. Tampilan Statistik Bansos**
+![Gambar 20 - Tampilan Statistik Bansos](images/statistik-bansos.png)
+
+---
+
+### 5.14 Laporan Pengajuan Berdasarkan Status
+
+Selain statistik keseluruhan, pengguna dapat menampilkan pengajuan berdasarkan status tertentu, yaitu **Menunggu, Diterima, atau Ditolak**.
+
+Sistem akan memeriksa seluruh data pada `daftarPengajuan` kemudian hanya menampilkan pengajuan yang memiliki status sesuai pilihan pengguna. Setiap pengajuan juga menampilkan keterangan sehingga hasil proses dapat diketahui melalui laporan.
+
+Fitur ini memudahkan pengguna untuk memisahkan pengajuan yang masih perlu diproses dengan pengajuan yang sudah memiliki hasil.
+
+> **Gambar 21. Laporan Pengajuan Berdasarkan Status**
+![Gambar 21 - Laporan Pengajuan Berdasarkan Status](images/laporan-pengajuan.png)
+
 ## 6. Gambaran Alur Keseluruhan Program
 
-Secara keseluruhan, program dimulai dengan menyiapkan **data penerima** dan **data bantuan**. Setelah kedua data tersebut tersedia, pengguna dapat membuat **pengajuan bantuan** dengan memilih penerima dan bantuan yang diinginkan.
+Secara keseluruhan, program dimulai dengan menampilkan **dashboard ringkasan dan menu utama**. Dashboard memberikan informasi mengenai jumlah penerima, bantuan, pengajuan, serta status pengajuan yang tersimpan pada sistem.
 
-Pengajuan yang berhasil dibuat akan memiliki status awal **Menunggu**. Selanjutnya pengajuan diproses berdasarkan jenis penerima, penghasilan, jumlah tanggungan untuk penerima keluarga, serta ketersediaan kuota bantuan.
+Pengguna kemudian dapat mengelola **data penerima** dan **data bantuan**. Setelah kedua data tersedia, pengguna dapat membuat **pengajuan bantuan** dengan memilih penerima dan bantuan yang akan diajukan.
 
-Apabila memenuhi ketentuan, pengajuan akan **Diterima** dan kuota bantuan berkurang. Apabila tidak memenuhi ketentuan, pengajuan akan **Ditolak** beserta alasan penolakannya.
+Setiap pengajuan baru memiliki status **Menunggu** dan keterangan **Belum diproses**. Pengajuan kemudian dapat diproses berdasarkan jenis penerima, penghasilan, jumlah tanggungan untuk penerima keluarga, serta ketersediaan kuota bantuan.
+
+Jika memenuhi kriteria, status pengajuan berubah menjadi **Diterima**, keterangan hasil disimpan, dan kuota bantuan berkurang satu. Jika tidak memenuhi kriteria, status berubah menjadi **Ditolak** dan alasan penolakan disimpan pada keterangan pengajuan.
+
+Seluruh hasil pengelolaan data kemudian dapat dilihat melalui **Menu Laporan Bansos**. Pengguna dapat melihat ringkasan penerima, bantuan, pengajuan berdasarkan status, serta statistik keseluruhan program.
 
 Alur sederhananya dapat digambarkan sebagai berikut:
 
-> **Gambar 19. Alur Keseluruhan Program**
-![Gambar 19 - Alur Keseluruhan Program](images/alur-program.png)
+> **Gambar 22. Alur Keseluruhan Program**
+![Gambar 22 - Alur Keseluruhan Program](images/alur-program.png)
 
-Dengan alur tersebut, program sudah menggambarkan proses sederhana pengelolaan bantuan sosial mulai dari **pendataan penerima, pendataan bantuan, pembuatan pengajuan, pemeriksaan pengajuan, sampai penentuan hasil pengajuan bantuan**.
+Dengan alur tersebut, program menggambarkan proses pengelolaan bantuan sosial mulai dari **dashboard informasi, pendataan penerima, pendataan bantuan, pembuatan pengajuan, proses penentuan hasil, penyimpanan keterangan, hingga penyajian laporan dan statistik bantuan sosial**.
 
 ---
 
@@ -408,6 +478,10 @@ Beberapa validasi yang diterapkan dalam program yaitu:
 15. Pengajuan yang sudah diproses tidak dapat dihapus.
 16. Penerima yang sudah mempunyai pengajuan tidak dapat dihapus.
 17. Bantuan yang sudah digunakan dalam pengajuan tidak dapat dihapus.
+18. Data penerima yang memiliki pengajuan berstatus Diterima tidak dapat diubah.
+19. Setiap hasil proses pengajuan menyimpan keterangan mengenai alasan diterima atau ditolak.
+
+Selain validasi tersebut, program menyimpan **keterangan hasil proses** pada setiap pengajuan. Keterangan digunakan untuk memberikan informasi mengenai alasan pengajuan diterima atau ditolak dan dapat ditampilkan kembali melalui data pengajuan maupun laporan.
 
 ---
 
@@ -432,19 +506,27 @@ Agar pasti program berjalan sesuai rancangan, berikut beberapa skenario pengujia
 | 13 | Membuat pengajuan ganda | Program menolak pengajuan |
 | 14 | Mengajukan bantuan dengan kuota 0 | Program menolak pengajuan |
 | 15 | Memproses pengajuan dua kali | Program menolak proses kedua |
+| 16 | Membuka menu utama setelah terdapat pengajuan | Dashboard menampilkan jumlah data dan status pengajuan sesuai kondisi terbaru |
+| 17 | Memproses pengajuan diterima | Status dan keterangan hasil pengajuan tersimpan |
+| 18 | Memproses pengajuan ditolak | Status dan alasan penolakan tersimpan |
+| 19 | Mengubah penerima yang memiliki pengajuan Diterima | Program menolak perubahan data |
+| 20 | Membuka Ringkasan Penerima | Program menampilkan total penerima Individu dan Keluarga |
+| 21 | Membuka Ringkasan Bantuan | Program menampilkan bantuan dan total sisa kuota |
+| 22 | Membuka laporan berdasarkan status | Program hanya menampilkan pengajuan dengan status yang dipilih |
+| 23 | Membuka Statistik Bansos | Program menampilkan statistik penerima, bantuan, dan pengajuan |
 
 ---
 
 # 9. Kesimpulan
 
-**Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** merupakan program berbasis Java yang digunakan untuk mengelola data penerima, bantuan, serta proses pengajuan bantuan sosial.
+**Sistem Pengelolaan Bantuan Sosial Daerah Samarinda** merupakan program berbasis Java yang dapat mengelola proses bantuan sosial mulai dari data penerima, data bantuan, pengajuan, proses penentuan hasil, hingga penyajian laporan dan statistik.
 
-Program menerapkan konsep dasar Pemrograman Berorientasi Objek melalui penggunaan class dan object, constructor, encapsulation, inheritance, serta relasi antar object.
+Program menerapkan konsep **Pemrograman Berorientasi Objek** melalui penggunaan class dan object, constructor, encapsulation, inheritance, method overriding, serta hubungan antar object. Inheritance diterapkan melalui class `Penerima` sebagai superclass yang diturunkan menjadi `PenerimaIndividu` dan `PenerimaKeluarga`.
 
-Inheritance diterapkan melalui class `Penerima` sebagai superclass, kemudian diturunkan menjadi `PenerimaIndividu` dan `PenerimaKeluarga`.
+Data program disimpan sementara menggunakan `ArrayList`. Program juga menerapkan validasi input dan aturan bisnis untuk menjaga proses pengelolaan data, seperti mencegah NIK duplikat, pengajuan ganda, penggunaan bantuan dengan kuota habis, penghapusan data yang masih terhubung dengan pengajuan, serta perubahan penerima yang telah memiliki pengajuan diterima.
 
-Program juga menggunakan `ArrayList` sebagai penyimpanan data sementara, percabangan untuk menentukan proses, perulangan untuk menjalankan menu dan membaca data, serta validasi untuk mencegah beberapa kesalahan input.
+Pada proses pengajuan, sistem menentukan hasil berdasarkan jenis penerima dan kriteria yang telah ditetapkan. Pengajuan yang memenuhi kriteria akan berstatus **Diterima** dan mengurangi kuota bantuan, sedangkan pengajuan yang tidak memenuhi kriteria akan berstatus **Ditolak**. Setiap hasil proses juga memiliki **keterangan** sehingga alasan penerimaan atau penolakan dapat diketahui kembali.
 
-Pada proses pengajuan, program dapat menentukan apakah pengajuan diterima atau ditolak berdasarkan jenis penerima dan kriteria yang telah ditentukan. Jika pengajuan diterima, kuota bantuan akan berkurang secara otomatis.
+Program dilengkapi dengan **dashboard ringkasan** untuk menampilkan kondisi data secara langsung serta **Menu Laporan Bansos** untuk melihat ringkasan penerima, bantuan, pengajuan berdasarkan status, dan statistik keseluruhan.
 
-Dengan adanya studi kasus ini, konsep dasar Pemrograman Berorientasi Objek dapat diterapkan dalam sebuah program sederhana yang memiliki hubungan antar class, pengelolaan data, validasi, dan aturan proses yang jelas.
+Dengan pengembangan tersebut, program tidak hanya melakukan pengelolaan data dasar, tetapi sudah membentuk alur sistem bantuan sosial yang lebih lengkap mulai dari **pendataan, pengajuan, seleksi, pengelolaan kuota, pencatatan hasil, hingga penyajian informasi dan laporan**.

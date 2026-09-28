@@ -23,20 +23,25 @@ public class PenerimaKeluarga extends Penerima {
         return anggotaKeluarga;
     }
     
-    public void setAnggotaKeluarga (int anggotaKeluarga) {
-        this.anggotaKeluarga = anggotaKeluarga;
-    }
-
     public int getJumlahTanggungan() {
         return jumlahTanggungan;
     }
     
-    public void setJumlahTanggungan (int jumlahTanggungan) {
-        this.jumlahTanggungan = jumlahTanggungan;
-    }    
+    public void setAnggotaKeluarga(int anggotaKeluarga) {
+        if (anggotaKeluarga > 0) {
+            this.anggotaKeluarga = anggotaKeluarga;
+        }
+    }
+
+    public void setJumlahTanggungan(int jumlahTanggungan) {
+        if (jumlahTanggungan >= 0 && jumlahTanggungan <= anggotaKeluarga) {
+            this.jumlahTanggungan = jumlahTanggungan;
+        }
+    }
     
-    public void tampilDataKeluarga() {
-        tampilData();
+    @Override
+    public void tampilData() {
+        super.tampilData();
         System.out.println("Tipe                        : Keluarga");        
         System.out.println("Jumlah Anggota Keluarga     : " + anggotaKeluarga);
         System.out.println("Jumlah Tanggungan           : " + jumlahTanggungan);

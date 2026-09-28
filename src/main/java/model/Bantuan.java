@@ -9,7 +9,7 @@ package model;
  * @author zefrialrizkullah
  */
 public class Bantuan {
-    private String idBantuan;
+    private final String idBantuan;
     private String namaBantuan;
     private double nominal;
     private int kuota;
@@ -44,11 +44,15 @@ public class Bantuan {
     }
     
     public void setNominal(double nominal) {
-        this.nominal = nominal;
+        if (nominal > 0) {
+            this.nominal = nominal;
+        }
     }
-    
+
     public void setKuota(int kuota) {
-        this.kuota = kuota;
+        if (kuota >= 0) {
+            this.kuota = kuota;
+        }
     }
     
     public void kurangiKuota() {
